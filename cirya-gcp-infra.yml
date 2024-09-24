@@ -1,0 +1,35 @@
+infrastructure:
+  pools:
+    server-pool:
+      provider: fixed
+      instances:
+        10.140.0.89:
+          user: root
+          privateKey: /root/gcp_keys/gcp_cirya_key.pem
+        
+    client-pool:
+      provider: fixed
+      instances:
+        10.140.0.89:
+          user: root
+          privateKey: /root/gcp_keys/gcp_cirya_key.pem
+
+containers:
+  groups:
+    aerospike:
+      type: raw
+      pool: server-pool
+
+    client:
+      type: raw
+      pool: client-pool
+
+clusters:
+  aerospike:
+    # the raw machines are centos 7 - use the el7 installer.
+    archivePath: https://download.aerospike.com/artifacts/aerospike-server-enterprise/7.1.0/aerospike-server-enterprise_7.1.0.6_tools-11.0.2_ubuntu22.04_x86_64.tgz
+    aerospikeConfTemplate: /tmp/aerospike-mesh.conf.ftl
+    params:
+      hbIsMesh: true
+      hbNumMeshSeeds: 100
+
