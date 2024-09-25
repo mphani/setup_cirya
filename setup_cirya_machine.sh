@@ -17,6 +17,7 @@ source install_snyk_to_html.sh
 source install_hashicorp_consul.sh
 source install_docker.sh
 source build_aerospike_docker_images.sh
+source start_weave.sh
 
 echo "unzipping cirya and cloning aerospike-connect repo"
 cd $BASE_FOLDER/aerospike
