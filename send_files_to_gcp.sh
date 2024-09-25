@@ -25,7 +25,7 @@ ssh -i $KEYS_FOLDER/$SSH_KEY_NAME $LOGIN_USER_NAME@$2 <<EOF
   mkdir $BASE_FOLDER/work
   mkdir $BASE_FOLDER/aerospike-test-data
   mkdir $BASE_FOLDER/aerospike-test-data/zookeeper
-  mkdir $BASE_FOLDER/aerospike-test-data/zookeeper
+  mkdir $BASE_FOLDER/aerospike-test-data/kafka
   mkdir $BASE_FOLDER/.gradle
 EOF
 
@@ -48,6 +48,7 @@ scp -i $KEYS_FOLDER/$SSH_KEY_NAME start_consul.sh $LOGIN_USER_NAME@$2:$BASE_FOLD
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME restart_docker.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME setup_env.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME exec_docker.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
+scp -i $KEYS_FOLDER/$SSH_KEY_NAME build_aerospike_docker_images.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME cirya-gcp-infra.yml $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME aerospike-mesh.conf.ftl $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
