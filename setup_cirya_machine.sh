@@ -3,7 +3,7 @@ export BASE_FOLDER=/root
 export CIRYA_PORT=5454
 export KEYS_FOLDER=$BASE_FOLDER/gcp_keys
 export SSH_KEY_NAME=$KEYS_FOLDER/gcp_cirya_key.pem
-export SCRIPTS_FOLDER=$BASE_FOLDER/env_scripts/setup_cirya
+export SCRIPTS_FOLDER=$BASE_FOLDER/env_scripts
 
 export LOCAL_IP_ADDR=10.140.0.89
 export GCP_IP_ADDR=$(ip a s | egrep 'inet.*/32' | awk '{print $2}' | cut -d'/' -f1)
