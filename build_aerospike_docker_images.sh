@@ -5,7 +5,7 @@ echo " building and creating required aerospike docker product images using ashi
 
 echo "docker logout and logging in with user ashishsinde54, to pull/build required aerospike images"
 docker logout
-docker login --username ashishshinde54 --password a1b2c3d4!
+docker login --username ashishshinde54 --password $DOCKER_PASSWORD
 
 docker pull aerospike/systemd-java-11-confluent-6.2.1
 docker build -t "aerospike/systemd-java-17-confluent-6.2.1" -f AEROSPIKE_FOLDER/aerospike-connect/test/src/test/data/docker/base/systemd-java-17-confluent-6.2.1.dockerfile .
