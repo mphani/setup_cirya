@@ -46,9 +46,9 @@ scp -i $KEYS_FOLDER/$SSH_KEY_NAME install_hashicorp_consul.sh $LOGIN_USER_NAME@$
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME start_weave.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME start_consul.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME restart_docker.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
-scp -i $KEYS_FOLDER/$SSH_KEY_NAME setup_env.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME exec_docker.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME build_aerospike_docker_images.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
+scp -i $KEYS_FOLDER/$SSH_KEY_NAME setup_cirya_machine.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME cirya-gcp-infra.yml $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME aerospike-mesh.conf.ftl $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
