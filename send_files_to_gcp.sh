@@ -57,6 +57,7 @@ scp -i $KEYS_FOLDER/$SSH_KEY_NAME gcp_cirya_key.pem $LOGIN_USER_NAME@$2:$BASE_FO
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME weave $LOGIN_USER_NAME@$2:$BASE_FOLDER/work/.
 
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME gradle.properties $LOGIN_USER_NAME@$2:$BASE_FOLDER/.gradle/.
+scp -i $KEYS_FOLDER/$SSH_KEY_NAME systemd-java-17-confluent-6.2.1.dockerfile $LOGIN_USER_NAME@$2:$BASE_FOLDER/aerospike/aerospike-connect/test/src/test/data/docker/base/.
 
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME phani_github_keys/githubcentos.ph $LOGIN_USER_NAME@$2:$BASE_FOLDER/github_keys/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME phani_github_keys/githubcentos.ph.pub $LOGIN_USER_NAME@$2:$BASE_FOLDER/github_keys/.
