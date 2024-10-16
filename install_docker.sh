@@ -25,9 +25,17 @@ sudo apt-get update
 #export DOCKER_VERSION_STRING=5:27.1.1-1~ubuntu.22.04~jammy
 export DOCKER_VERSION_STRING=5:20.10.24~3-0~ubuntu-jammy
 sudo apt-get install docker-ce=$DOCKER_VERSION_STRING docker-ce-cli=$DOCKER_VERSION_STRING containerd.io docker-buildx-plugin docker-compose-plugin
+echo "Locked docker version to "$DOCKER_VERSION_STRING
+sudo apt-mark hold docker-ce docker-ce-cli
 
 apt update
+apt upgrade
 
 # this is required so that we dont need to run docker commands with sudo [ like sudo docker ps ]
 sudo groupadd docker
 sudo gpasswd -a $USER docker
+
+sudo docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+sudo docker buildx create --use
+sudo docker buildx inspect --bootstrap
+

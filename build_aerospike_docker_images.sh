@@ -11,6 +11,7 @@ echo "closing aerospike-connect repo"
 git clone git@github.com:citrusleaf/aerospike-connect.git
 
 cd $BASE_FOLDER/env_scripts
+cp $BASE_FOLDER/systemd-java-17-confluent-6.2.1.dockerfile $AEROSPIKE_FOLDER/aerospike-connect/test/src/test/data/docker/base/.
 
 echo "docker logout and logging in with user ashishsinde54, to pull/build required aerospike images"
 docker logout

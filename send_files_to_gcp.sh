@@ -26,6 +26,8 @@ ssh -i $KEYS_FOLDER/$SSH_KEY_NAME $LOGIN_USER_NAME@$2 <<EOF
   mkdir $BASE_FOLDER/aerospike-test-data
   mkdir $BASE_FOLDER/aerospike-test-data/zookeeper
   mkdir $BASE_FOLDER/aerospike-test-data/kafka
+  mkdir $BASE_FOLDER/aerospike-test-data/bookkeeper
+  mkdir $BASE_FOLDER/aerospike-test-data/aerospike
   mkdir $BASE_FOLDER/.gradle
 EOF
 
@@ -36,7 +38,10 @@ scp -i $KEYS_FOLDER/$SSH_KEY_NAME cirya-3.3.15.zip $LOGIN_USER_NAME@$2:$BASE_FOL
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME path.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME cmd_cirya.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME start_cirya_server.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
+
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME run_connector_tests.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
+scp -i $KEYS_FOLDER/$SSH_KEY_NAME run_single_testcase.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
+
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME update_ubuntu_libs.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME install_docker.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME start_ssh_agent.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
@@ -53,16 +58,14 @@ scp -i $KEYS_FOLDER/$SSH_KEY_NAME setup_cirya_machine.sh $LOGIN_USER_NAME@$2:$BA
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME cirya-gcp-infra.yml $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME aerospike-mesh.conf.ftl $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 
-scp -i $KEYS_FOLDER/$SSH_KEY_NAME gcp_cirya_key.pem $LOGIN_USER_NAME@$2:$BASE_FOLDER/gcp_keys/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME weave $LOGIN_USER_NAME@$2:$BASE_FOLDER/work/.
 
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME gradle.properties $LOGIN_USER_NAME@$2:$BASE_FOLDER/.gradle/.
-scp -i $KEYS_FOLDER/$SSH_KEY_NAME systemd-java-17-confluent-6.2.1.dockerfile $LOGIN_USER_NAME@$2:$BASE_FOLDER/aerospike/aerospike-connect/test/src/test/data/docker/base/.
+scp -i $KEYS_FOLDER/$SSH_KEY_NAME systemd-java-17-confluent-6.2.1.dockerfile $LOGIN_USER_NAME@$2:$BASE_FOLDER
+#scp -i $KEYS_FOLDER/$SSH_KEY_NAME systemd-java-17-confluent-6.2.1.dockerfile $LOGIN_USER_NAME@$2:$BASE_FOLDER/aerospike/aerospike-connect/test/src/test/data/docker/base/.
 
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME phani_github_keys/githubcentos.ph $LOGIN_USER_NAME@$2:$BASE_FOLDER/github_keys/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME phani_github_keys/githubcentos.ph.pub $LOGIN_USER_NAME@$2:$BASE_FOLDER/github_keys/.
+scp -i $KEYS_FOLDER/$SSH_KEY_NAME gcp_cirya_key.pem $LOGIN_USER_NAME@$2:$BASE_FOLDER/gcp_keys/.
+scp -i $KEYS_FOLDER/$SSH_KEY_NAME pubsub_aerospike-engineering-blr-5a7b00d34886.json $LOGIN_USER_NAME@$2:$BASE_FOLDER/gcp_keys/.
 
-# test-data file
-#
-scp -i $KEYS_FOLDER/$SSH_KEY_NAME apache-zookeeper-3.6.1-bin.tar.gz $LOGIN_USER_NAME@$2:$BASE_FOLDER/aerospike-test-data/zookeeper/.
-scp -i $KEYS_FOLDER/$SSH_KEY_NAME kafka_2.12-2.3.0.tgz $LOGIN_USER_NAME@$2:$BASE_FOLDER/aerospike-test-data/kafka/.
