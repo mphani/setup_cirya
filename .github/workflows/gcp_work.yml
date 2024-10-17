@@ -34,11 +34,19 @@ jobs:
         - uses: actions/checkout@v4
           with:
             fetch-depth: 0
-        - uses: 'google-github-actions/auth@v2'
+        - id: 'auth'
+          name: 'Authenticate to Google Cloud'
+          uses: 'google-github-actions/auth@v1'
           with:
-            project_id: "aerospike-engineering-blr"
-            workload_identity_provider: "projects/136211202742/locations/global/workloadIdentityPools/phani-connector-workload-id-pool/attribute.repository/mphani/setup_cirya"
+            create_credentials_file: true
+            workload_identity_provider: "projects/136211202742/locations/global/workloadIdentityPools/phani-connector-workload-id-pool/providers/phani-connect-wid-provider"
             service_account: "phani-service-account-1@aerospike-engineering-blr.iam.gserviceaccount.com"
+          
+        # - uses: 'google-github-actions/auth@v2'
+        #   with:
+        #     project_id: "aerospike-engineering-blr"
+        #     workload_identity_provider: "projects/136211202742/locations/global/workloadIdentityPools/phani-connector-workload-id-pool/attribute.repository/mphani/setup_cirya"
+        #     service_account: "phani-service-account-1@aerospike-engineering-blr.iam.gserviceaccount.com"
             
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v2
