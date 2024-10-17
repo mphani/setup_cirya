@@ -25,10 +25,20 @@ jobs:
       
     job_build:
       runs-on: ubuntu-latest
+
+      permissions:
+         contents: 'read'
+         id-token: 'write'    
+      
       steps:
-        - uses: actions/checkout@v3
+        - uses: actions/checkout@v4
           with:
             fetch-depth: 0
+        - uses: 'google-github-actions/auth@v2'
+          with:
+            project_id: "aerospike-engineering-blr"
+            workload_identity_provider: "projects/136211202742/locations/global/workloadIdentityPools/phani-connector-workload-id-pool/attribute.repository/mphani/setup_cirya"
+            
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v2
           with:
