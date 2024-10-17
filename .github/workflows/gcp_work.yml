@@ -38,6 +38,7 @@ jobs:
           with:
             project_id: "aerospike-engineering-blr"
             workload_identity_provider: "projects/136211202742/locations/global/workloadIdentityPools/phani-connector-workload-id-pool/attribute.repository/mphani/setup_cirya"
+            service_account: "phani-service-account-1@aerospike-engineering-blr.iam.gserviceaccount.com"
             
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v2
