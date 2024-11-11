@@ -14,6 +14,9 @@ if [ ! -d "/var/lib/jenkins/.gradle" ]; then
      sudo chown jenkins:jenkins /var/lib/jenkins/.gradle
 fi
 
+# install yq
+sudo wget https://github.com/mikefarah/yq/releases/download/v4.11.0/yq_linux_amd64 -O /var/lib/jenkins/yq
+
 sudo cp $BASE_FOLDER/.gradle/gradle.properties /var/lib/jenkins/.gradle 
 sudo chown -R jenkins:jenkins /var/lib/jenkins/.gradle/*
 sudo chown -R jenkins:jenkins /var/lib/jenkins/*
