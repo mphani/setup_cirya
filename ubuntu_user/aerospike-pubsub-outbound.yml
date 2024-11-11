@@ -1,0 +1,241 @@
+service:
+  address: 0.0.0.0
+  # 
+  port: 8080
+  # 
+  manage: # Ignored in HTTP connectors.
+    address: 0.0.0.0
+    # 
+    port: 8902
+    # 
+  protocol: TCP
+
+publisher:
+  # 
+  type: pubsub
+  project-id: aerospike-engineering-blr
+  # 
+
+logging:
+  # Path should be viable on the outbound docker instance and the test machine
+  # to allow config file to be read from the Integration test as well.
+  file: /tmp/aerospike-pubsub-outbound.log
+  levels:
+    ROOT: debug
+
+format:
+  mode: flat-json
+  metadata-key: metadata
+
+routing:
+  mode: static
+  destination: outbound-connector-test-local
+
+# Same pubsub (non-lite) topic is used for all tests. Subscription filters are
+# used to distinguish messages for a test.
+attributes:
+  SubscriptionFilter:
+    mode: static
+    value: filter-rhapsxep
+
+namespaces:
+  customTransformer:
+    # 
+    routing:
+      mode: static
+      destination: outbound-connector-test-local
+      regional-endpoint: us-east1-pubsub.googleapis.com:443
+    # 
+    format:
+      mode: custom
+      class: com.aerospike.connect.pubsub.outbound.TestPubSubOutboundCustomFormatter
+      params:
+        SubscriptionFilter: filter-rhapsxep
+    custom-transformer:
+      class: com.aerospike.connect.outbound.TestOutboundCustomTransformer
+    sets:
+      withInbuiltFormat:
+        format:
+          mode: custom
+          class: com.aerospike.connect.pubsub.outbound.TestPubSubOutboundCustomIdentityFormatter
+          payload-format:
+            mode: message-pack
+      withBatching:
+        batching:
+          max-records: 5
+        format:
+          mode: custom
+          batch-formatter-class: com.aerospike.connect.pubsub.outbound.TestPubSubOutboundCustomBatchFormatter
+          payload-format:
+            mode: flat-json
+            metadata-key: metadata
+      withRecordRouter:
+        routing:
+          mode: custom
+          class: com.aerospike.connect.pubsub.outbound.TestPubSubOutboundCustomRecordRouter
+          params:
+            topic: outbound-connector-test-local
+            regionalEndpoint: us-east1-pubsub.googleapis.com:443
+      withSkipRouter:
+        routing:
+          mode: custom
+          class: com.aerospike.connect.pubsub.outbound.TestPubSubCustomSkipRouter
+      withSkipTransformer:
+        custom-transformer:
+          class: com.aerospike.connect.outbound.TestCustomSkipTransformer
+      withSkipFormatter:
+        format:
+          mode: custom
+          class: com.aerospike.connect.pubsub.outbound.TestPubSubCustomSkipFormatter
+
+
+  flatJson:
+    format:
+      mode: flat-json
+      metadata-key: metadata
+    sets:
+      extras:
+        # 
+        routing:
+          mode: static
+          destination: outbound-connector-test-local
+          regional-endpoint: us-east1-pubsub.googleapis.com:443
+        # 
+        ordering-key:
+          mode: digest
+        attributes:
+          # Same pubsub (non-lite) topic is used for all tests. Subscription filters are
+          # used to distinguish messages for a test.
+          SubscriptionFilter:
+            mode: static
+            value: filter-rhapsxep
+          namespace:
+            mode: namespace
+          set:
+            mode: set
+          userKey:
+            mode: user-key
+          bin:
+            mode: bin
+            bin: abc
+
+  json:
+    format:
+      mode: json
+      stringify-map-keys: false
+    sets:
+      skipRoute:
+        routing:
+          mode: skip
+
+  avroMap:
+    format:
+      mode: avro
+      schema: |
+        {
+        	"type": "map",
+        	"values": ["int", "long", "float", "double", "bytes", "string", "boolean", {
+        		"type": "map",
+        		"values": ["string"]
+        	}]
+        }
+
+  avroRecord:
+    format:
+      mode: avro
+      stringify-map-keys: true
+      schema: |
+        {
+          "type": "record",
+          "name": "com.aerospike",
+          "fields": [
+            {
+              "name": "bins",
+              "type": [
+                "null",
+                {
+                  "type": "record",
+                  "name": "record",
+                  "fields": [
+                    {
+                      "name": "abc",
+                      "type": [
+                        "string"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "namespace",
+              "type": "string"
+            },
+            {
+              "name": "userKey",
+              "type": [
+                "null",
+                "long",
+                "double",
+                "bytes",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "set",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "digest",
+              "type": "bytes"
+            },
+            {
+              "name": "msg",
+              "type": "string"
+            },
+            {
+              "name": "gen",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null
+            },
+            {
+              "name": "lut",
+              "type": [
+                "null",
+                "long"
+              ],
+              "default": null
+            },
+            {
+              "name": "exp",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null
+            },
+            {
+              "name": "durable",
+              "type": [
+                "null",
+                "boolean"
+              ],
+              "default": null
+            }
+          ]
+        }
+
+
+
+
+
+
+

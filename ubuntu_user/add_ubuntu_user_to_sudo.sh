@@ -1,0 +1,2 @@
+sudo adduser ubuntu sudo
+
