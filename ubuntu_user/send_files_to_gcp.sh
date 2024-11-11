@@ -60,7 +60,8 @@ scp -i $KEYS_FOLDER/$SSH_KEY_NAME start_consul.sh $LOGIN_USER_NAME@$2:$BASE_FOLD
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME restart_docker.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME exec_docker.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME build_aerospike_docker_images.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
-scp -i $KEYS_FOLDER/$SSH_KEY_NAME setup_cirya_machine.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
+scp -i $KEYS_FOLDER/$SSH_KEY_NAME setup_cirya_machine_step_1.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
+scp -i $KEYS_FOLDER/$SSH_KEY_NAME setup_cirya_machine_step_2.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME init_release.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME init_build.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
 scp -i $KEYS_FOLDER/$SSH_KEY_NAME install_jenkins.sh $LOGIN_USER_NAME@$2:$BASE_FOLDER/env_scripts/.
