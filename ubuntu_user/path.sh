@@ -15,13 +15,21 @@ export ELASTIC_CLOUD_PASSWORD=src/test/data/outbound/elastic-cloud-password
 export DISABLE_HOSTNAME_VERIFICATION=true
 
 export ELASTIC_CLOUD_PASSWORD=$SCRIPTS_FOLDER/elastic-cloud-password
+# export ELASTIC_CLOUD_PASSWORD=
 #
 #
+export AWS_IDENTITY=
+export AWS_SECRET=
+export INFLUX_DB_TOKEN=
 
 export PATH=$BASE_FOLDER/env_scripts:$PATH
 export PATH=$BASE_FOLDER/aerospike/cirya-3.3.15/bin:$PATH
 
-source ~/env_scripts/cmd_cirya.sh ps
+# google app credentials used for pubsub
+# (not working) export GOOGLE_APPLICATION_CREDENTIALS=$KEYS_FOLDER/pubsub-gcp-key.aerospike-engineering-blr-a484859e6664.json
+export GOOGLE_APPLICATION_CREDENTIALS=$KEYS_FOLDER/pubsub_aerospike-engineering-blr-5a7b00d34886.json
+
+source $BASE_FOLDER/env_scripts/cmd_cirya.sh ps
 
 # check if consul is already running, if not running start the consul service
 export PROCESS_NAME=consul
@@ -32,4 +40,4 @@ if [[ -z "$process_id" ]]; then
    sudo source ~/env_scripts/start_consul.sh
 fi
 
-source ~/env_scripts/reset_docker_buildx.sh
+source $BASE_FOLDER/env_scripts/reset_docker_buildx.sh
