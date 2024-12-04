@@ -1,4 +1,4 @@
-export KEYS_FOLDER=.
+export KEYS_FOLDER=/Users/phaniram/dirtywork/build_automation/setup_cirya/ubuntu_user
 export SSH_KEY_NAME=ubuntu_pem_gcp_cirya_key.pem 
 
 export BASE_FOLDER=/home/ubuntu
